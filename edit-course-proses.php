@@ -3,14 +3,14 @@
 
     session_start();
     
-    $id = $_POST['id'];
-    $title = $_POST['title'];
+    $id = intval($_POST['id']);
+    $title = mysqli_real_escape_string($koneksi, $_POST['title']);
     $author = $_SESSION['firstname'];
-    $description = $_POST['description'];
-    $jumlah_pelajaran = $_POST['jumlah_pelajaran'];
-    $jam = $_POST['jam'];
-    $harga = $_POST['harga'];
-    $tingkat = $_POST['tingkat'];
+    $description = mysqli_real_escape_string($koneksi, $_POST['description']);
+    $jumlah_pelajaran = intval($_POST['jumlah_pelajaran']);
+    $jam = intval($_POST['jam']);
+    $harga = intval($_POST['harga']);
+    $tingkat = mysqli_real_escape_string($koneksi, $_POST['tingkat']);
     $date = date('Y-m-d H:i:s');
     $img = addslashes(file_get_contents($_FILES['img']['tmp_name']));
 

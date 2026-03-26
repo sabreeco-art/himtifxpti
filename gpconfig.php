@@ -5,9 +5,10 @@ session_start();
 include_once 'libraries/google-client/Google_Client.php';
 include_once 'libraries/google-client/contrib/Google_Oauth2Service.php';
 
-$client_id = '570438074677-qic0reb8qj5a0hbtogngr5mc44difphd.apps.googleusercontent.com'; // Google client ID
-$client_secret = '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'; // Google Client Secret
-$redirect_url = 'http://localhost/PHP/tugas_ramadhan/tugas_dashboard/google.php'; // Callback URL
+$client_id = getenv('GOOGLE_CLIENT_ID') ?: '570438074677-qic0reb8qj5a0hbtogngr5mc44difphd.apps.googleusercontent.com';
+$client_secret = getenv('GOOGLE_CLIENT_SECRET') ?: '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';
+$base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+$redirect_url = getenv('GOOGLE_REDIRECT_URL') ?: $base_url . '/google.php';
 
 // Call Google API
 $gclient = new Google_Client();

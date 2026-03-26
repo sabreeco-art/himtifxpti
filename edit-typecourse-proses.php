@@ -3,10 +3,10 @@
 
     session_start();
 
-    $id = $_POST['id'];
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $icon = $_POST['icon'];
+    $id = intval($_POST['id']);
+    $title = mysqli_real_escape_string($koneksi, $_POST['title']);
+    $description = mysqli_real_escape_string($koneksi, $_POST['description']);
+    $icon = mysqli_real_escape_string($koneksi, $_POST['icon']);
     $author = $_SESSION['firstname'];
     $date = date('Y-m-d H:i:s');
 

@@ -92,10 +92,10 @@ $image = $footerpage['image'];
                 </div>
                 <?php
                     if(isset($_POST['first_name'])){
-                        $first_name = $_POST['first_name'];
-                        $last_name = $_POST['last_name'];
-                        $email = $_POST['email'];
-                        $massage = $_POST['massage'];
+                        $first_name = mysqli_real_escape_string($koneksi, $_POST['first_name']);
+                        $last_name = mysqli_real_escape_string($koneksi, $_POST['last_name']);
+                        $email = mysqli_real_escape_string($koneksi, $_POST['email']);
+                        $massage = mysqli_real_escape_string($koneksi, $_POST['massage']);
 
                         $query = "INSERT INTO massage_user (first_name, last_name, email, massage, date) VALUES ('$first_name', '$last_name', '$email', '$massage', NOW())";
                         

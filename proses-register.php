@@ -25,7 +25,7 @@ if ($hasil) {
     $range = 'Sheet1!A:E'; // Pastikan nama tab di bawah adalah 'Sheet1'
     
     // Load file credential.json
-    $json = file_get_contents('<api/credential.json');
+    $json = file_get_contents(__DIR__ . '/api/credential.json');
     $creds = json_decode($json, true);
 
     function get_google_access_token($creds) {

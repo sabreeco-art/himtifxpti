@@ -1,13 +1,19 @@
 FROM php:8.2-apache
 
-# Install mysqli extension
+# Install mysqli and curl extensions
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+# Copy custom php.ini
+COPY php.ini /usr/local/etc/php/conf.d/custom.ini
+
 # Copy application files
 COPY . /var/www/html/
+
+# Ensure img directory exists and is writable
+RUN mkdir -p /var/www/html/img && chmod 755 /var/www/html/img
 
 # Set working directory
 WORKDIR /var/www/html

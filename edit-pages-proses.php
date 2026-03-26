@@ -3,12 +3,12 @@
 
     session_start();
 	
-	$id = $_POST['id'];
-	$title = $_POST['title'];
+	$id = intval($_POST['id']);
+	$title = mysqli_real_escape_string($koneksi, $_POST['title']);
 	$author = $_SESSION['firstname'];
-    $contents = $_POST['contents'];
-	$src = $_POST['src'];
-	$src_db = $_POST['src_db'];
+    $contents = mysqli_real_escape_string($koneksi, $_POST['contents']);
+	$src = mysqli_real_escape_string($koneksi, $_POST['src']);
+	$src_db = mysqli_real_escape_string($koneksi, $_POST['src_db']);
 	$date = date('Y-m-d H:i:s');
 	
 	$query = "UPDATE pages SET title = '$title', author = '$author', content = '$contents', src = '$src', src_db = '$src_db', date = '$date' WHERE id = $id";

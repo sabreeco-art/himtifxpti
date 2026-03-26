@@ -1,0 +1,21 @@
+# Environment
+.env
+
+# Dependencies
+vendor/
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads (optional - uncomment if using file system uploads)
+# img/
+
+# Logs
+*.log

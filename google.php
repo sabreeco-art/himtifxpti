@@ -20,7 +20,12 @@ if ($gclient->getAccessToken()) {
     $email = $gpuserprofile['email'];
 
     
-    $conn = new PDO("mysql:host=localhost;dbname=learngo", "root", "12345");
+    $db_host = getenv('MYSQLHOST') ?: 'localhost';
+    $db_user = getenv('MYSQLUSER') ?: 'root';
+    $db_pass = getenv('MYSQLPASSWORD') ?: '';
+    $db_name = getenv('MYSQLDATABASE') ?: 'learngo';
+    $db_port = getenv('MYSQLPORT') ?: 3306;
+    $conn = new PDO("mysql:host=$db_host;port=$db_port;dbname=$db_name", $db_user, $db_pass);
     $sql = $conn->prepare("SELECT id, firstname, image FROM user WHERE email=:a");
     $sql->bindParam(':a', $email);
     $sql->execute(); 
@@ -30,7 +35,7 @@ if(empty($user)){
     $ex = explode('@', $email); 
     $firstname = $ex[0]; 
 
-    $conn = new PDO("mysql:host=localhost;dbname=learngo", "root", "12345");
+    // Reuse existing connection
     $sql = $conn->prepare("INSERT INTO user(firstname, lastname, email, role) VALUES(:firstname,:lastname,:email, 'Student')");
     $sql->bindParam(':firstname', $firstname);
     $sql->bindParam(':lastname', $lastname);

@@ -3,12 +3,12 @@
 
 	session_start();
 	
-	$title = $_POST['title'];
+	$title = mysqli_real_escape_string($koneksi, $_POST['title']);
 	$author = $_SESSION['firstname'];
-	$contents = $_POST['contents'];
+	$contents = mysqli_real_escape_string($koneksi, $_POST['contents']);
 	$date = date('Y-m-d H:i:s');
-	$src = $_POST['src'];
-	$src_db = $_POST['src_db'];
+	$src = mysqli_real_escape_string($koneksi, $_POST['src']);
+	$src_db = mysqli_real_escape_string($koneksi, $_POST['src_db']);
 	
 	$query = "INSERT INTO pages (title, author, content, date, src, src_db) VALUES ('$title', '$author', '$contents', '$date', '$src', '$src_db')";
 	

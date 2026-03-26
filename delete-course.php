@@ -1,7 +1,7 @@
 <?php
 	include 'koneksi.php';
 	
-	$id = $_GET['id'];
+	$id = intval($_GET['id']);
 	
 	$query = "DELETE FROM course WHERE id='$id' ";
 	$hasil = mysqli_query($koneksi, $query);

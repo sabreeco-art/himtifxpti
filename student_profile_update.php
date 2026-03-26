@@ -19,7 +19,9 @@ if (isset($_POST['update'])) {
         $nama_file_baru = "user_" . $id_user . "_" . time() . "." . $ekstensi;
 
         if (in_array($ekstensi, $ekstensi_diperbolehkan) === true) {
-            move_uploaded_file($file_tmp, 'img/' . $nama_file_baru);
+            $upload_dir = __DIR__ . '/img/';
+            if (!file_exists($upload_dir)) mkdir($upload_dir, 0755, true);
+            move_uploaded_file($file_tmp, $upload_dir . $nama_file_baru);
             
             // Query update dengan foto baru
             $query = "UPDATE user SET firstname='$fname', lasttname='$lname', image='$nama_file_baru' WHERE id='$id_user'";

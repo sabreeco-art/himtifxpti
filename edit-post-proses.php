@@ -3,11 +3,11 @@
 
     session_start();
 	
-	$id = $_POST['id'];
-	$title = $_POST['title'];
+	$id = intval($_POST['id']);
+	$title = mysqli_real_escape_string($koneksi, $_POST['title']);
 	$author = $_SESSION['firstname'];
-    $contents = $_POST['contents'];
-    $categories = $_POST['categories'];
+    $contents = mysqli_real_escape_string($koneksi, $_POST['contents']);
+    $categories = mysqli_real_escape_string($koneksi, $_POST['categories']);
 	$date = date('Y-m-d H:i:s');
 
 	if (!empty($_FILES['img']['tmp_name'])) {

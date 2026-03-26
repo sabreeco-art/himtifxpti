@@ -3,18 +3,18 @@
 
     session_start();
 
-    $id = $_POST['id'];
-    $title = $_POST['title'];
-    $subtitle = $_POST['subtitle'];
+    $id = intval($_POST['id']);
+    $title = mysqli_real_escape_string($koneksi, $_POST['title']);
+    $subtitle = mysqli_real_escape_string($koneksi, $_POST['subtitle']);
 
-    $n_phone = $_POST['n_phone'];
-    $email_support = $_POST['email_support'];
-    $email_general = $_POST['email_general'];
+    $n_phone = mysqli_real_escape_string($koneksi, $_POST['n_phone']);
+    $email_support = mysqli_real_escape_string($koneksi, $_POST['email_support']);
+    $email_general = mysqli_real_escape_string($koneksi, $_POST['email_general']);
 
-    $instagram = $_POST['instagram'];
-    $twitter = $_POST['twitter'];
-    $facebook = $_POST['facebook'];
-    $linkedin = $_POST['linkedin'];
+    $instagram = mysqli_real_escape_string($koneksi, $_POST['instagram']);
+    $twitter = mysqli_real_escape_string($koneksi, $_POST['twitter']);
+    $facebook = mysqli_real_escape_string($koneksi, $_POST['facebook']);
+    $linkedin = mysqli_real_escape_string($koneksi, $_POST['linkedin']);
 
     $query = "UPDATE contactpage SET 
             title = '$title', 

@@ -3,7 +3,7 @@ include 'koneksi.php';
 session_start();
 
 if (isset($_POST['id_course'])) {
-    $id_course = $_POST['id_course'];
+    $id_course = intval($_POST['id_course']);
     $title_materi = mysqli_real_escape_string($koneksi, $_POST['title_materi']);
     $video_link = mysqli_real_escape_string($koneksi, $_POST['video_link']);
     $deskripsi_materi = mysqli_real_escape_string($koneksi, $_POST['deskripsi_materi']);

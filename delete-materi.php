@@ -8,7 +8,7 @@ if (!isset($_SESSION['email'])) {
 }
 
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $id = intval($_GET['id']);
     
     // Query hapus
     $query = "DELETE FROM materi WHERE id_materi = '$id'";

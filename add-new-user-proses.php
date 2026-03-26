@@ -8,15 +8,16 @@
         exit;
     }
 	
-	$firstname = $_POST['firstname'];
-	$lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
-    $role = $_POST['role'];
+	$firstname = mysqli_real_escape_string($koneksi, $_POST['firstname']);
+	$lastname = mysqli_real_escape_string($koneksi, $_POST['lastname']);
+    $email = mysqli_real_escape_string($koneksi, $_POST['email']);
+    $password = mysqli_real_escape_string($koneksi, $_POST['password']);
+    $cpassword = mysqli_real_escape_string($koneksi, $_POST['cpassword']);
+    $role = mysqli_real_escape_string($koneksi, $_POST['role']);
 	$image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+	$nama_file = mysqli_real_escape_string($koneksi, $_FILES['image']['name']);
 	
-	$query = "INSERT INTO user (firstname, lastname, email, password, cpassword, role, nama_file, image) VALUES ('$firstname', '$lastname', '$email', '$password', '$cpassword', '$role', '".$_FILES['image']['name']."', '".$image."')";
+	$query = "INSERT INTO user (firstname, lastname, email, password, cpassword, role, nama_file, image) VALUES ('$firstname', '$lastname', '$email', '$password', '$cpassword', '$role', '$nama_file', '".$image."')";
 	
 	$hasil = mysqli_query($koneksi, $query);
 	

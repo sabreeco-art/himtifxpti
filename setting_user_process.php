@@ -15,7 +15,9 @@ if (isset($_POST['update_profil'])) {
         $ekstensi = strtolower(pathinfo($nama_file, PATHINFO_EXTENSION));
         $nama_baru = "user_" . $id_user . "_" . time() . "." . $ekstensi;
 
-        move_uploaded_file($file_tmp, 'img/' . $nama_baru);
+        $upload_dir = __DIR__ . '/img/';
+        if (!file_exists($upload_dir)) mkdir($upload_dir, 0755, true);
+        move_uploaded_file($file_tmp, $upload_dir . $nama_baru);
         $query = "UPDATE user SET firstname='$fname', lasttname='$lname', image='$nama_baru' WHERE id='$id_user'";
         $_SESSION['image'] = $nama_baru; // Update foto di session
     } else {
